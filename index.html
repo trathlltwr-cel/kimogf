@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="site-title-tab"> البرنس  للعطور</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink: #0c0c0e;
+  --ink2: #141418;
+  --ink3: #1c1c22;
+  --gold: #b8973e;
+  --gold2: #d4af5a;
+  --gold3: #f0d080;
+  --cream: #f2ead8;
+  --muted: #6b6460;
+  --muted2: #9a9490;
+  --border: rgba(184,151,62,0.18);
+  --border2: rgba(184,151,62,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--cream);font-family:'Cairo',sans-serif;direction:rtl;overflow-x:hidden;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;width:100%;z-index:1000;
+  background:rgba(12,12,14,0.96);
+  border-bottom:1px solid var(--border);
+  padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:68px;
+  backdrop-filter:blur(16px);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;font-style:italic;font-weight:300;
+  color:var(--gold2);letter-spacing:3px;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo::before{content:'◈';font-style:normal;font-size:0.9rem;color:var(--gold);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  color:var(--muted2);text-decoration:none;
+  font-size:0.82rem;font-weight:500;letter-spacing:1.5px;
+  text-transform:uppercase;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--gold2);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.cart-btn{
+  position:relative;background:transparent;border:1px solid var(--border2);
+  color:var(--gold2);width:40px;height:40px;border-radius:50%;
+  cursor:pointer;font-size:1rem;transition:all 0.3s;display:flex;align-items:center;justify-content:center;
+}
+.cart-btn:hover{background:var(--gold);color:#000;border-color:var(--gold);}
+.cart-count{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--gold);color:#000;
+  width:18px;height:18px;border-radius:50%;
+  font-size:0.65rem;font-weight:700;
+  display:none;align-items:center;justify-content:center;
+}
+.cart-count.visible{display:flex;}
+.lang-btn{
+  background:transparent;border:1px solid var(--border2);
+  color:var(--muted2);padding:6px 14px;border-radius:2px;
+  cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.75rem;
+  letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;
+}
+.lang-btn:hover{color:var(--gold2);border-color:var(--gold);}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;padding-top:68px;
+}
+.hero-lines{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.hero-lines::before,.hero-lines::after{
+  content:'';position:absolute;border-radius:50%;
+  border:1px solid var(--border);
+}
+.hero-lines::before{
+  width:700px;height:700px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulse 8s ease-in-out infinite;
+}
+.hero-lines::after{
+  width:1000px;height:1000px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulse 8s ease-in-out infinite 2s;
+}
+@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.08}}
+.hero-glow{
+  position:absolute;width:400px;height:400px;
+  top:50%;left:50%;transform:translate(-50%,-60%);
+  background:radial-gradient(circle, rgba(184,151,62,0.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;max-width:700px;padding:0 24px;}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:0.72rem;letter-spacing:5px;color:var(--gold);
+  text-transform:uppercase;font-weight:600;margin-bottom:28px;
+}
+.hero-kicker::before,.hero-kicker::after{content:'';width:32px;height:1px;background:var(--gold);opacity:0.5;}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.5rem,9vw,7rem);
+  font-weight:300;font-style:italic;
+  color:var(--cream);line-height:1.05;
+  margin-bottom:8px;
+}
+.hero-title em{color:var(--gold2);font-style:normal;}
+.hero-rule{
+  width:1px;height:60px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+  margin:28px auto;
+}
+.hero-sub{
+  font-size:0.95rem;color:var(--muted);font-weight:300;
+  line-height:1.8;margin-bottom:40px;
+  max-width:420px;margin-inline:auto;margin-bottom:40px;
+}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{
+  padding:13px 36px;
+  background:linear-gradient(135deg,var(--gold),var(--gold) 40%,var(--gold2));
+  color:#0c0c0e;font-weight:700;font-size:0.82rem;
+  letter-spacing:2px;text-transform:uppercase;
+  border:none;cursor:pointer;border-radius:1px;
+  transition:all 0.3s;font-family:'Cairo',sans-serif;
+  text-decoration:none;display:inline-block;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(184,151,62,0.35);}
+.btn-outline{
+  padding:13px 36px;background:transparent;
+  border:1px solid var(--border2);color:var(--cream);
+  font-size:0.82rem;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;border-radius:1px;transition:all 0.3s;
+  font-family:'Cairo',sans-serif;font-weight:500;
+  text-decoration:none;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold2);}
+
+/* ─── SECTION HEADER ─── */
+.section-wrap{padding:100px 48px;}
+.section-head{text-align:center;margin-bottom:64px;}
+.s-eyebrow{
+  font-size:0.7rem;letter-spacing:5px;color:var(--gold);
+  text-transform:uppercase;font-weight:600;margin-bottom:14px;
+}
+.s-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:300;font-style:italic;color:var(--cream);
+}
+.s-rule{width:48px;height:1px;background:var(--gold);margin:20px auto 0;opacity:0.6;}
+
+/* ─── CATEGORIES ─── */
+.cats-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;max-width:1100px;margin:0 auto;
+}
+.cat-card{
+  background:var(--ink2);border:1px solid var(--border);
+  border-radius:2px;padding:32px 16px;text-align:center;
+  cursor:pointer;transition:all 0.35s;position:relative;overflow:hidden;
+}
+.cat-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:var(--gold);transform:scaleX(0);
+  transition:transform 0.35s;transform-origin:center;
+}
+.cat-card:hover::after,.cat-card.active::after{transform:scaleX(1);}
+.cat-card:hover,.cat-card.active{
+  border-color:var(--border2);
+  background:var(--ink3);
+}
+.cat-icon{font-size:1.6rem;margin-bottom:12px;opacity:0.85;}
+.cat-name{font-size:0.88rem;font-weight:600;color:var(--cream);letter-spacing:0.5px;}
+.cat-count{font-size:0.7rem;color:var(--gold);margin-top:6px;letter-spacing:1px;}
+
+/* ─── PRODUCTS ─── */
+#products{background:var(--ink2);padding:80px 48px 100px;}
+.prod-filter-bar{
+  max-width:1200px;margin:0 auto 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.showing-label{font-size:0.8rem;color:var(--muted);letter-spacing:1px;}
+.showing-val{color:var(--gold2);font-weight:600;}
+.prods-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:20px;max-width:1200px;margin:0 auto;
+}
+.prod-card{
+  background:var(--ink);border:1px solid var(--border);
+  border-radius:2px;overflow:hidden;
+  transition:all 0.4s;cursor:pointer;
+  display:flex;flex-direction:column;
+}
+.prod-card:hover{
+  border-color:var(--border2);
+  transform:translateY(-6px);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(184,151,62,0.1);
+}
+.prod-img{
+  position:relative;height:300px;
+  background:#0c0c0e;
+  overflow:hidden;
+}
+.prod-img-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+.prod-img img{position:relative;z-index:1;}
+.prod-placeholder{position:relative;z-index:1;}
+.prod-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  filter:brightness(0.92);
+}
+.prod-card:hover .prod-img img{transform:scale(1.06);}
+.prod-placeholder{
+  width:100%;height:100%;display:flex;align-items:center;
+  justify-content:center;font-size:3.5rem;opacity:0.15;
+}
+.prod-badge{
+  position:absolute;top:14px;left:14px;
+  font-size:0.65rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;padding:4px 10px;border-radius:1px;
+}
+.badge-sold{background:#7a1c1c;color:#ffb4b4;}
+.badge-new{background:var(--gold);color:#000;}
+.prod-body{padding:22px 20px;flex:1;display:flex;flex-direction:column;}
+.prod-cat-tag{
+  font-size:0.65rem;letter-spacing:3px;color:var(--gold);
+  text-transform:uppercase;font-weight:600;margin-bottom:8px;
+}
+.prod-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:400;color:var(--cream);
+  margin-bottom:auto;padding-bottom:16px;line-height:1.3;
+}
+.prod-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:16px;border-top:1px solid var(--border);
+}
+.prod-price{
+  display:flex;flex-direction:column;
+}
+.price-val{font-size:1.3rem;font-weight:700;color:var(--gold2);}
+.price-cur{font-size:0.7rem;color:var(--muted);letter-spacing:1px;margin-top:1px;}
+.cart-add-btn{
+  background:transparent;border:1px solid var(--border2);
+  color:var(--gold2);padding:9px 18px;border-radius:1px;
+  cursor:pointer;font-family:'Cairo',sans-serif;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.5px;
+  transition:all 0.3s;display:flex;align-items:center;gap:6px;
+}
+.cart-add-btn:hover{background:var(--gold);color:#000;border-color:var(--gold);}
+.cart-add-btn:disabled{opacity:0.3;cursor:not-allowed;}
+.cart-add-btn:disabled:hover{background:transparent;color:var(--gold2);border-color:var(--border2);}
+
+/* ─── EMPTY / LOADING ─── */
+.empty-wrap{
+  text-align:center;padding:80px 20px;
+  color:var(--muted);grid-column:1/-1;
+}
+.empty-icon{font-size:2.5rem;margin-bottom:16px;opacity:0.25;}
+.empty-txt{font-size:0.9rem;letter-spacing:0.5px;}
+.loading-wrap{display:flex;justify-content:center;align-items:center;padding:80px;grid-column:1/-1;}
+.spinner{width:36px;height:36px;border:1px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.9s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:60px 48px 40px;text-align:center;
+  border-top:1px solid var(--border);
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-style:italic;font-weight:300;
+  color:var(--gold2);letter-spacing:4px;margin-bottom:16px;
+}
+.footer-copy{font-size:0.78rem;color:var(--muted);letter-spacing:1px;}
+
+/* ─── PRODUCT MODAL ─── */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.88);
+  z-index:2000;display:none;align-items:center;justify-content:center;
+  backdrop-filter:blur(6px);
+}
+.overlay.open{display:flex;}
+.modal{
+  background:var(--ink2);border:1px solid var(--border2);
+  max-width:620px;width:92%;max-height:92vh;
+  overflow-y:auto;position:relative;
+  animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes modalIn{from{transform:scale(0.92) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.modal-img-wrap{height:280px;overflow:hidden;}
+.modal-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.modal-img-placeholder{
+  width:100%;height:100%;background:var(--ink3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;opacity:0.1;
+}
+.modal-body{padding:32px;}
+.modal-close{
+  position:absolute;top:16px;left:16px;z-index:10;
+  background:rgba(12,12,14,0.8);border:1px solid var(--border);
+  color:var(--muted2);width:34px;height:34px;border-radius:50%;
+  cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.modal-close:hover{border-color:var(--gold);color:var(--gold);}
+.modal-cat{font-size:0.65rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+.modal-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:8px;line-height:1.2;}
+.modal-price{font-size:1.6rem;font-weight:700;color:var(--gold2);margin-bottom:24px;}
+.modal-price span{font-size:0.8rem;color:var(--muted);font-weight:400;margin-right:6px;}
+.modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
+.meta-box{background:var(--ink3);border:1px solid var(--border);padding:14px 16px;border-radius:1px;}
+.meta-lbl{font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:5px;}
+.meta-val{font-size:0.92rem;font-weight:600;}
+.modal-footer-btns{display:flex;gap:10px;}
+.modal-footer-btns .btn-primary{flex:1;text-align:center;}
+
+/* ─── CART DRAWER ─── */
+.cart-drawer{
+  position:fixed;top:0;left:0;width:380px;max-width:100vw;height:100vh;
+  background:var(--ink2);border-right:1px solid var(--border2);
+  z-index:3000;display:flex;flex-direction:column;
+  transform:translateX(-100%);transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.cart-drawer.open{transform:translateX(0);}
+.cart-drawer-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2999;
+  display:none;backdrop-filter:blur(2px);
+}
+.cart-drawer-overlay.open{display:block;}
+.cart-header{
+  padding:24px 24px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cart-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;font-weight:300;color:var(--gold2);}
+.drawer-close{
+  background:transparent;border:1px solid var(--border);color:var(--muted2);
+  width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;transition:all 0.3s;
+}
+.drawer-close:hover{border-color:var(--gold);color:var(--gold);}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px;}
+.cart-empty{
+  text-align:center;padding:60px 20px;color:var(--muted);
+}
+.cart-empty-icon{font-size:2rem;opacity:0.2;margin-bottom:12px;}
+.cart-empty-txt{font-size:0.85rem;letter-spacing:0.5px;}
+.cart-item{
+  display:flex;gap:14px;padding:16px 0;
+  border-bottom:1px solid var(--border);align-items:center;
+}
+.cart-item-img{
+  width:60px;height:60px;border-radius:1px;overflow:hidden;
+  background:var(--ink3);flex-shrink:0;
+}
+.cart-item-img img{width:100%;height:100%;object-fit:cover;}
+.cart-item-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;opacity:0.2;}
+.cart-item-info{flex:1;min-width:0;}
+.cart-item-name{font-size:0.88rem;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cart-item-price{font-size:0.82rem;color:var(--gold);}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.qty-btn{
+  background:var(--ink3);border:1px solid var(--border);color:var(--cream);
+  width:24px;height:24px;border-radius:1px;cursor:pointer;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+}
+.qty-btn:hover{border-color:var(--gold);color:var(--gold);}
+.qty-val{font-size:0.82rem;font-weight:600;min-width:20px;text-align:center;}
+.remove-item{
+  background:transparent;border:none;color:var(--muted);
+  cursor:pointer;font-size:0.9rem;padding:4px;transition:color 0.2s;
+  flex-shrink:0;
+}
+.remove-item:hover{color:#d64045;}
+.cart-footer{padding:20px 24px;border-top:1px solid var(--border);}
+.cart-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.total-lbl{font-size:0.78rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+.total-val{font-size:1.4rem;font-weight:700;color:var(--gold2);}
+
+/* ─── DELIVERY SECTION ─── */
+.delivery-section{margin-bottom:16px;}
+.delivery-toggle{
+  display:flex;background:var(--ink3);border:1px solid var(--border);
+  border-radius:2px;overflow:hidden;margin-bottom:14px;
+}
+.delivery-opt{
+  flex:1;padding:10px;text-align:center;cursor:pointer;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.5px;
+  transition:all 0.3s;color:var(--muted);border:none;background:transparent;
+  font-family:'Cairo',sans-serif;
+}
+.delivery-opt.active{background:var(--gold);color:#000;}
+.delivery-opt:not(.active):hover{color:var(--cream);}
+.delivery-note{
+  background:rgba(184,151,62,0.08);border:1px solid rgba(184,151,62,0.25);
+  border-radius:2px;padding:12px 14px;
+  font-size:0.78rem;color:var(--muted2);line-height:1.6;
+  display:none;
+}
+.delivery-note.visible{display:block;}
+.delivery-note strong{color:var(--gold2);}
+.location-row{
+  display:flex;gap:8px;margin-top:10px;
+  display:none;
+}
+.location-row.visible{display:flex;}
+.location-input{
+  flex:1;background:var(--ink);border:1px solid var(--border);
+  color:var(--cream);padding:9px 12px;border-radius:1px;
+  font-family:'Cairo',sans-serif;font-size:0.8rem;
+  outline:none;transition:border-color 0.3s;
+}
+.location-input:focus{border-color:var(--gold);}
+.locate-btn{
+  background:transparent;border:1px solid var(--border2);color:var(--gold2);
+  padding:9px 12px;border-radius:1px;cursor:pointer;font-size:0.9rem;
+  transition:all 0.3s;white-space:nowrap;
+}
+.locate-btn:hover{background:var(--gold);color:#000;border-color:var(--gold);}
+.locate-status{font-size:0.72rem;color:var(--muted);margin-top:6px;min-height:16px;}
+.locate-status.ok{color:#5a9e6f;}
+.locate-status.err{color:#d64045;}
+.checkout-btn{width:100%;}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  background:var(--ink2);color:var(--cream);
+  border:1px solid var(--border2);border-right:3px solid var(--gold);
+  padding:14px 20px;border-radius:2px;
+  font-size:0.85rem;font-weight:500;letter-spacing:0.3px;
+  transform:translateY(80px);opacity:0;
+  transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+  pointer-events:none;max-width:280px;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--ink);}
+::-webkit-scrollbar-thumb{background:var(--gold);opacity:0.4;border-radius:2px;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  nav{padding:0 16px;}
+  .nav-links{display:none;}
+  .section-wrap{padding:80px 16px;}
+  #products{padding:60px 16px 80px;}
+  .cats-grid{grid-template-columns:repeat(2,1fr);}
+  .prods-grid{grid-template-columns:1fr;}
+  .cart-drawer{width:100vw;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" id="nav-brand"> البرنس  للعطور</a>
+  <ul class="nav-links">
+    <li><a href="#hero"       data-ar="الرئيسية"  data-en="Home">الرئيسية</a></li>
+    <li><a href="#categories" data-ar="الأقسام"   data-en="Collections">الأقسام</a></li>
+    <li><a href="#products"   data-ar="العطور"    data-en="Perfumes">العطور</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" id="openCartBtn" title="السلة">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="lang-btn" id="langToggle">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-kicker" id="hero-kicker">الفخامة في كل قطرة</div>
+    <h1 class="hero-title"><em id="hero-brand"> البرنس </em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub" id="hero-sub">عطور مختارة بعناية فائقة من أرقى دور الأزياء العالمية، لذوق يعرف ما يريد</p>
+    <div class="hero-actions">
+      <a href="#categories" class="btn-primary" id="hero-cta">اكتشف المجموعة</a>
+      <a href="#products" class="btn-outline" id="hero-cta2">تصفح العطور</a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="section-wrap">
+  <div class="section-head">
+    <div class="s-eyebrow" id="cat-ey">تصفح حسب</div>
+    <h2 class="s-title" id="cat-title">الأقسام</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="cats-grid" id="catsGrid">
+    <div class="loading-wrap"><div class="spinner"></div></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-head" style="padding-top:60px;">
+    <div class="s-eyebrow" id="prod-ey">اختر</div>
+    <h2 class="s-title" id="prod-title">العطور</h2>
+    <div class="s-rule"></div>
+  </div>
+  <div class="prod-filter-bar">
+    <span class="showing-label" id="filter-lbl">عرض: <span class="showing-val" id="filter-val">الكل</span></span>
+  </div>
+  <div class="prods-grid" id="prodsGrid">
+    <div class="loading-wrap"><div class="spinner"></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo" id="footer-brand"> البرنس  للعطور</div>
+  <p class="footer-copy" id="footer-copy">© 2025 — جميع الحقوق محفوظة</p>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="prodModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img-wrap" id="modalImgWrap">
+      <div class="modal-img-placeholder">🌹</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-cat" id="modal-cat"></div>
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-price"><span id="modal-cur">ج.س</span><span id="modal-price-val"></span></div>
+      <div class="modal-meta">
+        <div class="meta-box">
+          <div class="meta-lbl" id="ml-status">الحالة</div>
+          <div class="meta-val" id="modal-status"></div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-lbl" id="ml-stock">المخزون</div>
+          <div class="meta-val" id="modal-stock"></div>
+        </div>
+      </div>
+      <div class="modal-footer-btns">
+        <button class="btn-primary" id="modal-cart-btn" onclick="addFromModal()">أضف للسلة</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <div class="cart-title" id="cart-title-lbl">سلة التسوق</div>
+    <button class="drawer-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="total-lbl" id="total-lbl">المجموع</span>
+      <span class="total-val" id="cartTotal">0 ج.س</span>
+    </div>
+
+    <!-- DELIVERY TOGGLE -->
+    <div class="delivery-section">
+      <div class="delivery-toggle">
+        <button class="delivery-opt active" id="opt-pickup" onclick="setDelivery('pickup')" id-ar="استلام من المتجر" id-en="Store Pickup">استلام من المتجر</button>
+        <button class="delivery-opt" id="opt-delivery" onclick="setDelivery('delivery')" id-ar="توصيل" id-en="Delivery">توصيل</button>
+      </div>
+      <!-- DELIVERY NOTE -->
+      <div class="delivery-note" id="deliveryNote">
+        ⚠️ <strong id="dn-title">تنبيه:</strong> <span id="dn-body">سعر المنتج لا يشمل رسوم التوصيل — سيتم التواصل معك لتحديد التفاصيل.</span>
+      </div>
+      <!-- LOCATION ROW -->
+      <div class="location-row" id="locationRow">
+        <input class="location-input" id="locationInput" placeholder="عنوانك / حيّك" readonly/>
+        <button class="locate-btn" onclick="detectLocation()" title="تحديد موقعي">📍</button>
+      </div>
+      <div class="locate-status" id="locateStatus"></div>
+    </div>
+
+    <button class="btn-primary checkout-btn" id="checkoutBtn" onclick="checkout()">
+      إتمام الطلب
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────
+const SUPABASE_URL  = 'https://wmwfxwwaatcdcovvzykz.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indtd2Z4d3dhYXRjZGNvdnZ6eWt6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzMjA4MjcsImV4cCI6MjA5Nzg5NjgyN30.DvDFePjF2CaFfKoVgBblKeLCpqIpEHTWBH7M2_DYfAg';
+const BRANCH_FILTER = null;
+const SITE_NAME_AR  = ' البرنس  للعطور';
+const SITE_NAME_EN  = 'Chanel Perfumes';
+
+// ── STATE ────────────────────────────────────────────────────
+let allProducts = [], allCats = [], activeCat = null;
+let lang = 'ar';
+let cart = {}; // { id: { product, qty } }
+let deliveryMode = 'pickup'; // 'pickup' | 'delivery'
+let modalProduct = null;
+
+// ── SUPABASE ─────────────────────────────────────────────────
+async function sbFetch(table, q='') {
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${q}`, {
+    headers:{'apikey':SUPABASE_ANON,'Authorization':`Bearer ${SUPABASE_ANON}`}
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+
+// ── HELPERS ──────────────────────────────────────────────────
+const t = (ar, en) => lang === 'ar' ? ar : en;
+const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const imgSrc = p => p.image_url || '';
+
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 2600);
+}
+
+// ── CATEGORIES ───────────────────────────────────────────────
+function buildCats(products) {
+  const counts = {};
+  products.forEach(p => {
+    const c = (p.category||'').trim();
+    if (c) counts[c] = (counts[c]||0) + 1;
+  });
+  return Object.keys(counts).sort((a,b)=>a.localeCompare(b,'ar')).map(n=>({name:n,count:counts[n]}));
+}
+
+function renderCats(cats) {
+  const grid = document.getElementById('catsGrid');
+  const allCard = `
+    <div class="cat-card ${activeCat===null?'active':''}" data-cat="">
+      <div class="cat-name">${t('الكل','All')}</div>
+      <div class="cat-count">${allProducts.length} ${t('عطر','items')}</div>
+    </div>`;
+  if (!cats.length) {
+    grid.innerHTML = allCard;
+    return;
+  }
+  grid.innerHTML = allCard + cats.map(c=>`
+    <div class="cat-card ${activeCat===c.name?'active':''}" data-cat="${esc(c.name)}">
+      <div class="cat-name">${esc(c.name)}</div>
+      <div class="cat-count">${c.count} ${t('عطر','items')}</div>
+    </div>`).join('');
+}
+
+document.getElementById('catsGrid').addEventListener('click', e=>{
+  const card = e.target.closest('.cat-card');
+  if (!card) return;
+  filterCat(card.dataset.cat === '' ? null : card.dataset.cat);
+});
+
+// ── PRODUCTS ─────────────────────────────────────────────────
+function renderProds(prods) {
+  const grid = document.getElementById('prodsGrid');
+  if (!prods.length) {
+    grid.innerHTML = `<div class="empty-wrap">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-txt">${t('لا توجد عطور في هذا القسم','No perfumes in this category')}</div>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = prods.map(p => {
+    const img = imgSrc(p);
+    const outOfStock = Number(p.stock||0) <= 0;
+    return `
+    <div class="prod-card" data-id="${p.id}">
+      <div class="prod-img" data-canvas="true">
+        <canvas class="prod-img-canvas"></canvas>
+        ${img
+          ? `<img src="${esc(img)}" alt="${esc(p.name)}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=prod-placeholder>🌹</div>'"/>`
+          : `<div class="prod-placeholder">🌹</div>`}
+        ${outOfStock ? `<span class="prod-badge badge-sold">${t('نفد','Out')}</span>` : ''}
+      </div>
+      <div class="prod-body">
+        ${p.category ? `<div class="prod-cat-tag">${esc(p.category)}</div>` : ''}
+        <div class="prod-name">${esc(p.name)}</div>
+        <div class="prod-foot">
+          <div class="prod-price">
+            <span class="price-val">${Number(p.price||0).toLocaleString()}</span>
+            <span class="price-cur">${t('ج.س','SDG')}</span>
+          </div>
+          <button class="cart-add-btn" data-id="${p.id}" ${outOfStock?'disabled':''}>
+            + ${t('أضف للسلة','Add')}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('prodsGrid').addEventListener('click', e => {
+  const btn = e.target.closest('.cart-add-btn');
+  if (btn && !btn.disabled) { e.stopPropagation(); addToCart(Number(btn.dataset.id)); return; }
+  const card = e.target.closest('.prod-card');
+  if (card) openModal(Number(card.dataset.id));
+});
+
+// ── FILTER ───────────────────────────────────────────────────
+function filterCat(name) {
+  activeCat = name;
+  document.getElementById('filter-val').textContent = name || t('الكل','All');
+  renderCats(allCats);
+  const filtered = name === null ? allProducts : allProducts.filter(p=>(p.category||'')===name);
+  renderProds(filtered);
+  setTimeout(initCardAnimations, 50);
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+}
+
+// ── MODAL ────────────────────────────────────────────────────
+function openModal(id) {
+  const p = allProducts.find(x=>x.id===id);
+  if (!p) return;
+  modalProduct = p;
+  const img = imgSrc(p);
+  const stock = Number(p.stock||0);
+  const wrap = document.getElementById('modalImgWrap');
+  wrap.innerHTML = img
+    ? `<img src="${esc(img)}" alt="${esc(p.name)}" onerror="this.parentElement.innerHTML='<div class=modal-img-placeholder>🌹</div>'"/>`
+    : `<div class="modal-img-placeholder">🌹</div>`;
+  document.getElementById('modal-cat').textContent = p.category||'';
+  document.getElementById('modal-name').textContent = p.name||'';
+  document.getElementById('modal-cur').textContent = t('ج.س ','SDG ');
+  document.getElementById('modal-price-val').textContent = Number(p.price||0).toLocaleString();
+  document.getElementById('modal-status').textContent = stock>0 ? t('متوفر ✓','In Stock ✓') : t('غير متوفر','Out of Stock');
+  document.getElementById('modal-stock').textContent = stock;
+  const cartBtn = document.getElementById('modal-cart-btn');
+  cartBtn.disabled = stock <= 0;
+  cartBtn.style.opacity = stock <= 0 ? '0.4' : '1';
+  document.getElementById('prodModal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('prodModal').classList.remove('open');
+  modalProduct = null;
+}
+document.getElementById('prodModal').addEventListener('click', e=>{
+  if (e.target === document.getElementById('prodModal')) closeModal();
+});
+function addFromModal() {
+  if (modalProduct) { addToCart(modalProduct.id); closeModal(); }
+}
+
+// ── CART ─────────────────────────────────────────────────────
+function addToCart(id) {
+  const p = allProducts.find(x=>x.id===id);
+  if (!p) return;
+  const stock = Number(p.stock||0);
+  const cur = cart[id] ? cart[id].qty : 0;
+  if (cur >= stock) { showToast(t('وصلت الحد الأقصى للمخزون','Maximum stock reached')); return; }
+  if (cart[id]) cart[id].qty++;
+  else cart[id] = {product:p, qty:1};
+  renderCart();
+  showToast(`${t('أُضيف','Added')} ${p.name} ✓`);
+}
+
+function removeFromCart(id) {
+  delete cart[id];
+  renderCart();
+}
+
+function changeQty(id, delta) {
+  if (!cart[id]) return;
+  const stock = Number(cart[id].product.stock||0);
+  const newQty = cart[id].qty + delta;
+  if (newQty <= 0) { removeFromCart(id); return; }
+  if (newQty > stock) { showToast(t('لا يوجد مخزون كافٍ','Not enough stock')); return; }
+  cart[id].qty = newQty;
+  renderCart();
+}
+
+function cartTotal() {
+  return Object.values(cart).reduce((s,{product,qty})=>s+(Number(product.price||0)*qty),0);
+}
+
+function cartItemCount() {
+  return Object.values(cart).reduce((s,{qty})=>s+qty, 0);
+}
+
+function renderCart() {
+  const items = Object.values(cart);
+  const count = cartItemCount();
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = count;
+  countEl.classList.toggle('visible', count > 0);
+
+  const el = document.getElementById('cartItems');
+  if (!items.length) {
+    el.innerHTML = `<div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-txt">${t('السلة فارغة','Your cart is empty')}</div>
+    </div>`;
+  } else {
+    el.innerHTML = items.map(({product:p, qty})=>{
+      const img = imgSrc(p);
+      return `
+      <div class="cart-item">
+        <div class="cart-item-img">
+          ${img ? `<img src="${esc(img)}" alt="${esc(p.name)}" onerror="this.parentElement.innerHTML='<div class=cart-item-img-ph>🌹</div>'"/>` : `<div class="cart-item-img-ph">🌹</div>`}
+        </div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${esc(p.name)}</div>
+          <div class="cart-item-price">${(Number(p.price||0)*qty).toLocaleString()} ${t('ج.س','SDG')}</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
+            <span class="qty-val">${qty}</span>
+            <button class="qty-btn" onclick="changeQty(${p.id},+1)">+</button>
+          </div>
+        </div>
+        <button class="remove-item" onclick="removeFromCart(${p.id})" title="إزالة">🗑</button>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('cartTotal').textContent = `${cartTotal().toLocaleString()} ${t('ج.س','SDG')}`;
+}
+
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+document.getElementById('openCartBtn').addEventListener('click', openCart);
+
+// ── DELIVERY ─────────────────────────────────────────────────
+function setDelivery(mode) {
+  deliveryMode = mode;
+  document.getElementById('opt-pickup').classList.toggle('active', mode==='pickup');
+  document.getElementById('opt-delivery').classList.toggle('active', mode==='delivery');
+  const note = document.getElementById('deliveryNote');
+  const locRow = document.getElementById('locationRow');
+  note.classList.toggle('visible', mode==='delivery');
+  locRow.classList.toggle('visible', mode==='delivery');
+  if (mode==='pickup') {
+    document.getElementById('locateStatus').textContent = '';
+    document.getElementById('locationInput').value = '';
+  } else {
+    // تحديد الموقع تلقائياً عند اختيار التوصيل
+    detectLocation();
+  }
+}
+
+let userCoords = null; // { lat, lon }
+
+function detectLocation() {
+  const statusEl = document.getElementById('locateStatus');
+  const inputEl = document.getElementById('locationInput');
+  if (!navigator.geolocation) {
+    statusEl.textContent = t('المتصفح لا يدعم تحديد الموقع','Browser does not support geolocation');
+    statusEl.className = 'locate-status err';
+    return;
+  }
+  statusEl.textContent = t('جاري تحديد موقعك...','Detecting your location...');
+  statusEl.className = 'locate-status';
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude: lat, longitude: lon } = pos.coords;
+      userCoords = { lat, lon };
+      const mapsLink = `https://maps.google.com/?q=${lat},${lon}`;
+      inputEl.value = mapsLink;
+      statusEl.textContent = t('✓ تم تحديد موقعك بدقة','✓ Location pinpointed');
+      statusEl.className = 'locate-status ok';
+    },
+    err => {
+      userCoords = null;
+      const msgs = {
+        1: t('رُفض الوصول للموقع — اسمح بالوصول من إعدادات المتصفح','Location permission denied'),
+        2: t('تعذّر تحديد الموقع','Could not determine location'),
+        3: t('انتهت مهلة الطلب','Request timed out')
+      };
+      statusEl.textContent = msgs[err.code] || t('خطأ في تحديد الموقع','Location error');
+      statusEl.className = 'locate-status err';
+    },
+    { timeout: 10000, enableHighAccuracy: true }
+  );
+}
+
+function checkout() {
+  if (!Object.keys(cart).length) {
+    showToast(t('السلة فارغة!','Cart is empty!'));
+    return;
+  }
+  const location = userCoords ? `https://maps.google.com/?q=${userCoords.lat},${userCoords.lon}` : document.getElementById('locationInput').value.trim();
+  if (deliveryMode === 'delivery' && !location) {
+    showToast(t('حدد موقعك أولاً 📍','Please set your location 📍'));
+    return;
+  }
+
+  // بناء رسالة الواتساب
+  const items = Object.values(cart);
+  const total = cartTotal();
+  const now = new Date().toLocaleString('ar-EG');
+
+  let msg = '';
+  msg += '*🛒 طلب جديد —  البرنس  للعطور*\n';
+  msg += '━━━━━━━━━━━━━━━━━━━━\n\n';
+  msg += '*📦 المنتجات:*\n';
+  items.forEach(({product:p, qty}) => {
+    msg += `• *${p.name}* × ${qty} — ${(Number(p.price||0)*qty).toLocaleString()} ج.س\n`;
+  });
+  msg += '\n━━━━━━━━━━━━━━━━━━━━\n';
+  msg += `*💰 المجموع:* ${total.toLocaleString()} ج.س\n`;
+  msg += '\n━━━━━━━━━━━━━━━━━━━━\n';
+  if (deliveryMode === 'delivery') {
+    msg += `*🚚 طريقة الاستلام:* توصيل\n`;
+    const mapsDisplay = userCoords ? `https://maps.google.com/?q=${userCoords.lat},${userCoords.lon}` : location;
+    msg += `*📍 الموقع:* ${mapsDisplay}\n`;
+    msg += `*⚠️ ملاحظة:* السعر لا يشمل رسوم التوصيل\n`;
+  } else {
+    msg += `*🏪 طريقة الاستلام:* استلام من المتجر\n`;
+  }
+  msg += '\n━━━━━━━━━━━━━━━━━━━━\n';
+  msg += `*🕐 وقت الطلب:* ${now}`;
+
+  const phone = '249904546601';
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+
+  showToast(t('جاري فتح الواتساب... ✓','Opening WhatsApp... ✓'));
+  cart = {};
+  renderCart();
+  closeCart();
+}
+
+// ── LANGUAGE ─────────────────────────────────────────────────
+const TEXTS = {
+  'hero-kicker':  ['الفخامة في كل قطرة','Luxury In Every Drop'],
+  'hero-sub':     ['عطور مختارة بعناية فائقة من أرقى دور الأزياء العالمية، لذوق يعرف ما يريد','Fine fragrances curated from the world\'s most prestigious houses.'],
+  'hero-cta':     ['اكتشف المجموعة','Explore Collection'],
+  'hero-cta2':    ['تصفح العطور','Browse Perfumes'],
+  'cat-ey':       ['تصفح حسب','Browse By'],
+  'cat-title':    ['الأقسام','Collections'],
+  'prod-ey':      ['اختر','Choose'],
+  'prod-title':   ['العطور','Perfumes'],
+  'filter-lbl':   ['عرض: ','Showing: '],
+  'ml-status':    ['الحالة','Status'],
+  'ml-stock':     ['المخزون','Stock'],
+  'cart-title-lbl':['سلة التسوق','Shopping Cart'],
+  'total-lbl':    ['المجموع','Total'],
+  'footer-copy':  ['© 2025 — جميع الحقوق محفوظة','© 2025 — All rights reserved'],
+  'dn-title':     ['تنبيه:','Notice:'],
+  'dn-body':      ['سعر المنتج لا يشمل رسوم التوصيل — سيتم التواصل معك لتحديد التفاصيل.','Product price does not include delivery fees — we will contact you to arrange details.'],
+};
+
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  lang = lang==='ar' ? 'en' : 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==='ar' ? 'rtl' : 'ltr';
+  document.getElementById('langToggle').textContent = lang==='ar' ? 'EN' : 'ع';
+  updateTexts();
+  const siteName = lang==='ar' ? SITE_NAME_AR : SITE_NAME_EN;
+  ['nav-brand','hero-brand','footer-brand'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent = id==='hero-brand' ? siteName.split(' ')[0] : siteName;
+  });
+  document.getElementById('site-title-tab').textContent = siteName;
+  document.querySelectorAll('.nav-links a').forEach(a=>{ a.textContent = lang==='ar' ? a.dataset.ar : a.dataset.en; });
+  document.getElementById('opt-pickup').textContent = t('استلام من المتجر','Store Pickup');
+  document.getElementById('opt-delivery').textContent = t('توصيل','Delivery');
+  document.getElementById('locationInput').placeholder = t('عنوانك / حيّك','Your address');
+  document.getElementById('checkoutBtn').textContent = t('إتمام الطلب','Checkout');
+  renderCats(allCats);
+  const shown = activeCat===null ? allProducts : allProducts.filter(p=>(p.category||'')===activeCat);
+  renderProds(shown);
+  renderCart();
+  document.getElementById('filter-val').textContent = activeCat || t('الكل','All');
+});
+
+function updateTexts() {
+  for (const [id,[ar,en]] of Object.entries(TEXTS)) {
+    const el=document.getElementById(id);
+    if(el) el.textContent = lang==='ar' ? ar : en;
+  }
+}
+
+// ── LOAD DATA ─────────────────────────────────────────────────
+// ── PRODUCT CARD ANIMATION ───────────────────────────────────
+function initCardAnimations() {
+  const canvases = document.querySelectorAll('.prod-img-canvas');
+  canvases.forEach(canvas => {
+    const w = canvas.offsetWidth || 290;
+    const h = canvas.offsetHeight || 300;
+    canvas.width  = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+
+    // particles
+    const particles = Array.from({length: 18}, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: 0.5 + Math.random() * 1.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -0.2 - Math.random() * 0.5,
+      alpha: 0.1 + Math.random() * 0.5,
+      life: Math.random(),
+    }));
+
+    // smoke puffs
+    const puffs = Array.from({length: 4}, (_, i) => ({
+      x: w * 0.3 + Math.random() * w * 0.4,
+      y: h,
+      r: 20 + Math.random() * 30,
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: -0.4 - Math.random() * 0.3,
+      alpha: 0,
+      life: Math.random(),
+      maxAlpha: 0.04 + Math.random() * 0.06,
+    }));
+
+    let frame;
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      // radial glow at bottom center
+      const grd = ctx.createRadialGradient(w/2, h, 0, w/2, h, h * 0.75);
+      grd.addColorStop(0, 'rgba(184,151,62,0.12)');
+      grd.addColorStop(0.5, 'rgba(184,151,62,0.04)');
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, w, h);
+
+      // smoke puffs
+      puffs.forEach(p => {
+        p.life += 0.004;
+        if (p.life > 1) {
+          p.life = 0;
+          p.x = w * 0.25 + Math.random() * w * 0.5;
+          p.y = h;
+          p.r = 20 + Math.random() * 30;
+          p.alpha = 0;
+          p.vy = -0.4 - Math.random() * 0.3;
+          p.vx = (Math.random() - 0.5) * 0.2;
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+        p.r += 0.25;
+        p.alpha = p.life < 0.3
+          ? p.maxAlpha * (p.life / 0.3)
+          : p.maxAlpha * (1 - (p.life - 0.3) / 0.7);
+        const sg = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        sg.addColorStop(0, `rgba(200,180,120,${p.alpha})`);
+        sg.addColorStop(1, `rgba(200,180,120,0)`);
+        ctx.fillStyle = sg;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // gold particles
+      particles.forEach(p => {
+        p.life += 0.005;
+        if (p.life > 1) {
+          p.life = 0;
+          p.x = Math.random() * w;
+          p.y = h + 5;
+          p.alpha = 0.1 + Math.random() * 0.5;
+          p.vy = -0.2 - Math.random() * 0.5;
+          p.vx = (Math.random() - 0.5) * 0.3;
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+        const a = p.life < 0.2 ? p.alpha * (p.life / 0.2) : p.alpha * (1 - p.life);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212,175,90,${a})`;
+        ctx.fill();
+      });
+
+      frame = requestAnimationFrame(draw);
+    }
+
+    // pause when not visible (performance)
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { if (!frame) draw(); }
+        else { cancelAnimationFrame(frame); frame = null; }
+      });
+    }, { threshold: 0.1 });
+    obs.observe(canvas);
+  });
+}
+
+async function loadData() {
+  try {
+    let q = '?select=*&order=created_at.desc';
+    if (BRANCH_FILTER !== null) q += `&branch_id=eq.${BRANCH_FILTER}`;
+    allProducts = await sbFetch('products', q);
+    allCats     = buildCats(allProducts);
+    renderCats(allCats);
+    renderProds(allProducts);
+    renderCart();
+    setTimeout(initCardAnimations, 50);
+  } catch(e) {
+    console.error(e);
+    document.getElementById('catsGrid').innerHTML = `<div class="empty-wrap" style="grid-column:1/-1"><div class="empty-icon">⚠️</div><div class="empty-txt">تعذّر الاتصال بقاعدة البيانات</div></div>`;
+    document.getElementById('prodsGrid').innerHTML = '';
+  }
+}
+
+loadData();
+</script>
+</body>
+</html>

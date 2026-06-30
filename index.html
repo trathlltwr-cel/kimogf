@@ -247,6 +247,13 @@ nav{
   font-size:0.65rem;letter-spacing:3px;color:var(--gold);
   text-transform:uppercase;font-weight:600;margin-bottom:8px;
 }
+.prod-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.prod-tag{
+  font-size:0.66rem;font-weight:600;letter-spacing:0.3px;
+  padding:3px 10px;border-radius:10px;
+  background:var(--pearl3);border:1px solid var(--border2);
+  color:var(--gold2);white-space:nowrap;
+}
 .prod-name{
   font-family:'Cormorant Garamond',serif;
   font-size:1.35rem;font-weight:400;color:var(--cream);
@@ -615,16 +622,7 @@ footer{
       <div class="modal-cat" id="modal-cat"></div>
       <div class="modal-name" id="modal-name"></div>
       <div class="modal-price"><span id="modal-cur">ج.س</span><span id="modal-price-val"></span></div>
-      <div class="modal-meta">
-        <div class="meta-box">
-          <div class="meta-lbl" id="ml-status">الحالة</div>
-          <div class="meta-val" id="modal-status"></div>
-        </div>
-        <div class="meta-box">
-          <div class="meta-lbl" id="ml-stock">المخزون</div>
-          <div class="meta-val" id="modal-stock"></div>
-        </div>
-      </div>
+      <div class="modal-meta" id="modal-meta"></div>
       <div class="modal-footer-btns">
         <button class="btn-primary" id="modal-cart-btn" onclick="addFromModal()">أضف للسلة</button>
       </div>
@@ -754,6 +752,26 @@ const t = (ar, en) => lang === 'ar' ? ar : en;
 const esc = s => String(s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const imgSrc = p => p.image_url || '';
 
+// نوع المنتج / الحجم / الموسم — للعرض فقط (لا تُعرض تكلفة الشراء ولا كمية المخزون)
+function typeLabel(p) {
+  return p.product_type === 'ml' ? t('تعبئة بالمل','By the ML') : t('جاهز','Ready Made');
+}
+function sizeLabel(p) {
+  if (p.product_type !== 'ml' || !p.ml_amount) return null;
+  return `${p.ml_amount} ${t('مل','ml')}`;
+}
+function seasonLabel(p) {
+  return p.season ? p.season : null;
+}
+function buildProdTags(p) {
+  const tags = [typeLabel(p)];
+  const sz = sizeLabel(p);
+  if (sz) tags.push(sz);
+  const sea = seasonLabel(p);
+  if (sea) tags.push(sea);
+  return tags;
+}
+
 function showToast(msg) {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -805,6 +823,7 @@ function renderProds(prods) {
   grid.innerHTML = prods.map(p => {
     const img = imgSrc(p);
     const outOfStock = Number(p.stock||0) <= 0;
+    const tags = buildProdTags(p);
     return `
     <div class="prod-card" data-id="${p.id}">
       <div class="prod-img" data-canvas="true">
@@ -816,6 +835,7 @@ function renderProds(prods) {
       </div>
       <div class="prod-body">
         ${p.category ? `<div class="prod-cat-tag">${esc(p.category)}</div>` : ''}
+        <div class="prod-tags">${tags.map(tg=>`<span class="prod-tag">${esc(tg)}</span>`).join('')}</div>
         <div class="prod-name">${esc(p.name)}</div>
         <div class="prod-foot">
           <div class="prod-price">
@@ -864,8 +884,21 @@ function openModal(id) {
   document.getElementById('modal-name').textContent = p.name||'';
   document.getElementById('modal-cur').textContent = t('ج.س ','SDG ');
   document.getElementById('modal-price-val').textContent = Number(p.price||0).toLocaleString();
-  document.getElementById('modal-status').textContent = stock>0 ? t('متوفر ✓','In Stock ✓') : t('غير متوفر','Out of Stock');
-  document.getElementById('modal-stock').textContent = stock;
+
+  // بطاقات المعلومات: الحالة + النوع + (الحجم) + (الموسم) — بدون كمية المخزون أو سعر الشراء
+  const boxes = [];
+  boxes.push({ lbl: t('الحالة','Status'), val: stock>0 ? t('متوفر ✓','In Stock ✓') : t('غير متوفر','Out of Stock') });
+  boxes.push({ lbl: t('النوع','Type'), val: typeLabel(p) });
+  const sz = sizeLabel(p);
+  if (sz) boxes.push({ lbl: t('الحجم','Size'), val: sz });
+  const sea = seasonLabel(p);
+  if (sea) boxes.push({ lbl: t('الموسم','Season'), val: esc(sea) });
+  document.getElementById('modal-meta').innerHTML = boxes.map(b=>`
+    <div class="meta-box">
+      <div class="meta-lbl">${b.lbl}</div>
+      <div class="meta-val">${b.val}</div>
+    </div>`).join('');
+
   const cartBtn = document.getElementById('modal-cart-btn');
   cartBtn.disabled = stock <= 0;
   cartBtn.style.opacity = stock <= 0 ? '0.4' : '1';
@@ -1118,8 +1151,6 @@ const TEXTS = {
   'prod-ey':      ['اختر','Choose'],
   'prod-title':   ['العطور','Perfumes'],
   'filter-lbl':   ['عرض: ','Showing: '],
-  'ml-status':    ['الحالة','Status'],
-  'ml-stock':     ['المخزون','Stock'],
   'cart-title-lbl':['سلة التسوق','Shopping Cart'],
   'total-lbl':    ['المجموع','Total'],
   'footer-copy':  ['© 2025 — جميع الحقوق محفوظة','© 2025 — All rights reserved'],

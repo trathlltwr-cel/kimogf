@@ -283,6 +283,24 @@ nav{
 .spinner{width:36px;height:36px;border:1px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.9s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
+/* ─── LOCATION / MAP SECTION ─── */
+.map-section{
+  padding:80px 48px;background:var(--pearl3);
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.map-inner{max-width:560px;margin:0 auto;}
+.map-icon{font-size:2.2rem;margin-bottom:18px;opacity:0.8;}
+.map-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.9rem;
+  font-style:italic;font-weight:300;color:var(--cream);margin-bottom:12px;
+}
+.map-sub{font-size:0.88rem;color:var(--muted);margin-bottom:28px;line-height:1.7;}
+.map-link-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 34px;
+}
+
 /* ─── FOOTER ─── */
 footer{
   padding:60px 48px 40px;text-align:center;
@@ -404,6 +422,27 @@ footer{
 .total-lbl{font-size:0.78rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
 .total-val{font-size:1.4rem;font-weight:700;color:var(--gold2);}
 
+/* ─── ACCOUNT NUMBERS BANNER ─── */
+.accounts-banner{
+  background:rgba(154,123,58,0.06);
+  border:1px solid var(--border2);
+  border-radius:2px;
+  padding:14px 16px;
+  margin-bottom:18px;
+}
+.ab-title{
+  font-size:0.78rem;font-weight:700;color:var(--gold2);
+  margin-bottom:10px;letter-spacing:0.3px;
+}
+.ab-row{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:0.78rem;padding:5px 0;
+  border-bottom:1px dashed var(--border);
+}
+.ab-row:last-child{border-bottom:none;}
+.ab-bank{color:var(--muted2);}
+.ab-num{color:var(--cream);font-weight:700;letter-spacing:0.5px;direction:ltr;}
+
 /* ─── DELIVERY SECTION ─── */
 .delivery-section{margin-bottom:16px;}
 .delivery-toggle{
@@ -422,28 +461,32 @@ footer{
   background:rgba(154,123,58,0.07);border:1px solid rgba(154,123,58,0.25);
   border-radius:2px;padding:12px 14px;
   font-size:0.78rem;color:var(--muted2);line-height:1.6;
-  display:none;
+  display:none;margin-bottom:12px;
 }
 .delivery-note.visible{display:block;}
 .delivery-note strong{color:var(--gold2);}
-.location-row{
-  display:flex;gap:8px;margin-top:10px;
-  display:none;
+
+/* ─── CITY / AREA SELECT ─── */
+.location-select-wrap{display:none;flex-direction:column;gap:10px;}
+.location-select-wrap.visible{display:flex;}
+.field-mini label{
+  display:block;font-size:0.7rem;color:var(--muted);
+  margin-bottom:5px;letter-spacing:0.5px;
 }
-.location-row.visible{display:flex;}
+.loc-select{
+  width:100%;background:var(--pearl3);border:1px solid var(--border);
+  color:var(--cream);padding:9px 12px;border-radius:1px;
+  font-family:'Cairo',sans-serif;font-size:0.82rem;
+  outline:none;transition:border-color 0.3s;cursor:pointer;
+}
+.loc-select:focus{border-color:var(--gold);}
 .location-input{
-  flex:1;background:var(--pearl3);border:1px solid var(--border);
+  width:100%;background:var(--pearl3);border:1px solid var(--border);
   color:var(--cream);padding:9px 12px;border-radius:1px;
   font-family:'Cairo',sans-serif;font-size:0.8rem;
   outline:none;transition:border-color 0.3s;
 }
 .location-input:focus{border-color:var(--gold);}
-.locate-btn{
-  background:transparent;border:1px solid var(--border2);color:var(--gold2);
-  padding:9px 12px;border-radius:1px;cursor:pointer;font-size:0.9rem;
-  transition:all 0.3s;white-space:nowrap;
-}
-.locate-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
 .locate-status{font-size:0.72rem;color:var(--muted);margin-top:6px;min-height:16px;}
 .locate-status.ok{color:#2e7d4f;}
 .locate-status.err{color:#c0392b;}
@@ -474,6 +517,7 @@ footer{
   .nav-links{display:none;}
   .section-wrap{padding:80px 16px;}
   #products{padding:60px 16px 80px;}
+  .map-section{padding:60px 16px;}
   .cats-grid{grid-template-columns:repeat(2,1fr);}
   .prods-grid{grid-template-columns:1fr;}
   .cart-drawer{width:100vw;}
@@ -542,6 +586,18 @@ footer{
   </div>
 </section>
 
+<!-- STORE LOCATION (MAP LINK) -->
+<section class="map-section">
+  <div class="map-inner">
+    <div class="map-icon">📍</div>
+    <div class="map-title" id="map-title">موقع المحل</div>
+    <p class="map-sub" id="map-sub">زورونا في معرضنا — اضغط الزر بالأسفل لفتح الموقع على خرائط جوجل</p>
+    <a class="btn-primary map-link-btn" href="https://maps.app.goo.gl/nQkbBBWK3BePyi1r7?g_st=aw" target="_blank" rel="noopener" id="map-link-btn">
+      📍 افتح الموقع على الخريطة
+    </a>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo" id="footer-brand">  متجر البرنس   للعطور</div>
@@ -590,6 +646,23 @@ footer{
       <span class="total-val" id="cartTotal">0 ج.س</span>
     </div>
 
+    <!-- ACCOUNT NUMBERS BANNER -->
+    <div class="accounts-banner" id="accountsBanner">
+      <div class="ab-title" id="ab-title">💳 أرقام الحسابات للتحويل</div>
+      <div class="ab-row">
+        <span class="ab-bank">بنك بدر (معارف شمس الدين)</span>
+        <span class="ab-num">3209671</span>
+      </div>
+      <div class="ab-row">
+        <span class="ab-bank">فوري (معارف شمس الدين)</span>
+        <span class="ab-num">51711079</span>
+      </div>
+      <div class="ab-row">
+        <span class="ab-bank">أوكاش (أسامة الأمين)</span>
+        <span class="ab-num">0961100</span>
+      </div>
+    </div>
+
     <!-- DELIVERY TOGGLE -->
     <div class="delivery-section">
       <div class="delivery-toggle">
@@ -600,10 +673,34 @@ footer{
       <div class="delivery-note" id="deliveryNote">
         ⚠️ <strong id="dn-title">تنبيه:</strong> <span id="dn-body">سعر المنتج لا يشمل رسوم التوصيل — سيتم التواصل معك لتحديد التفاصيل.</span>
       </div>
-      <!-- LOCATION ROW -->
-      <div class="location-row" id="locationRow">
-        <input class="location-input" id="locationInput" placeholder="عنوانك / حيّك" readonly/>
-        <button class="locate-btn" onclick="detectLocation()" title="تحديد موقعي">📍</button>
+      <!-- CITY / AREA SELECTION -->
+      <div class="location-select-wrap" id="locationSelectWrap">
+        <div class="field-mini">
+          <label id="lbl-city">المدينة</label>
+          <select class="loc-select" id="citySelect" onchange="onCityChange()">
+            <option value="">اختر المدينة</option>
+            <option value="الخرطوم">الخرطوم</option>
+            <option value="القضارف">القضارف</option>
+            <option value="كسلا">كسلا</option>
+            <option value="بورتسودان">بورتسودان</option>
+            <option value="عطبرة">عطبرة</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+        <div class="field-mini" id="cityOtherWrap" style="display:none;">
+          <label id="lbl-city-other">اسم المدينة</label>
+          <input class="location-input" id="cityOtherInput" placeholder="اكتب اسم مدينتك"/>
+        </div>
+        <div class="field-mini" id="areaSelectWrap" style="display:none;">
+          <label id="lbl-area">الحي / المنطقة</label>
+          <select class="loc-select" id="areaSelect" onchange="onAreaChange()">
+            <option value="">اختر الحي</option>
+          </select>
+        </div>
+        <div class="field-mini" id="areaOtherWrap" style="display:none;">
+          <label id="lbl-area-other">اسم الحي / المنطقة</label>
+          <input class="location-input" id="areaOtherInput" placeholder="اكتب اسم حيّك أو منطقتك"/>
+        </div>
       </div>
       <div class="locate-status" id="locateStatus"></div>
     </div>
@@ -625,12 +722,23 @@ const BRANCH_FILTER = null;
 const SITE_NAME_AR  = '  متجر البرنس   للعطور';
 const SITE_NAME_EN  = 'Chanel Perfumes';
 
+// ── CITY / AREA DATA (قابلة للتعديل لاحقاً) ────────────────
+const CITY_AREAS = {
+  'الخرطوم': ['الخرطوم بحري','أم درمان','الخرطوم 2','الخرطوم 3','الرياض','أركويت','المنشية','بري','السحافة','الديم','الثورة','العمارات','كافوري','جبرة','الكلاكلة','أم درمان السوق','الفتيحاب','أخرى'],
+  'القضارف': ['وسط القضارف','الحلة الجديدة','الكلتاوي','الفاو','حي الزهراء','الجامعة','الصناعية','أخرى'],
+  'كسلا': ['وسط كسلا','الشركة','أم درمان كسلا','الديم كسلا','الخليفة','الصالحين','الموردة','أخرى'],
+  'بورتسودان': ['الديم','السلاطين','أمبدة','شرف الدين','الميناء','السوق العربي','أخرى'],
+  'عطبرة': ['وسط عطبرة','كيلو 2','المحطة','الدخلة','عطبرة الجديدة','حي العرب','أخرى'],
+};
+
 // ── STATE ────────────────────────────────────────────────────
 let allProducts = [], allCats = [], activeCat = null;
 let lang = 'ar';
 let cart = {};
 let deliveryMode = 'pickup';
 let modalProduct = null;
+let selectedCity = '';
+let selectedArea = '';
 
 // ── SUPABASE ─────────────────────────────────────────────────
 async function sbFetch(table, q='') {
@@ -864,50 +972,72 @@ function setDelivery(mode) {
   document.getElementById('opt-pickup').classList.toggle('active', mode==='pickup');
   document.getElementById('opt-delivery').classList.toggle('active', mode==='delivery');
   const note = document.getElementById('deliveryNote');
-  const locRow = document.getElementById('locationRow');
+  const selWrap = document.getElementById('locationSelectWrap');
   note.classList.toggle('visible', mode==='delivery');
-  locRow.classList.toggle('visible', mode==='delivery');
+  selWrap.classList.toggle('visible', mode==='delivery');
   if (mode==='pickup') {
     document.getElementById('locateStatus').textContent = '';
-    document.getElementById('locationInput').value = '';
-  } else {
-    detectLocation();
   }
 }
 
-let userCoords = null;
-
-function detectLocation() {
+// ── CITY / AREA SELECTION ───────────────────────────────────
+function onCityChange() {
+  const citySelect = document.getElementById('citySelect');
+  const cityOtherWrap = document.getElementById('cityOtherWrap');
+  const areaSelectWrap = document.getElementById('areaSelectWrap');
+  const areaOtherWrap = document.getElementById('areaOtherWrap');
+  const areaSelect = document.getElementById('areaSelect');
   const statusEl = document.getElementById('locateStatus');
-  const inputEl = document.getElementById('locationInput');
-  if (!navigator.geolocation) {
-    statusEl.textContent = t('المتصفح لا يدعم تحديد الموقع','Browser does not support geolocation');
-    statusEl.className = 'locate-status err';
+
+  selectedCity = citySelect.value;
+  selectedArea = '';
+  statusEl.textContent = '';
+  statusEl.className = 'locate-status';
+  areaOtherWrap.style.display = 'none';
+  document.getElementById('areaOtherInput').value = '';
+
+  if (selectedCity === '') {
+    cityOtherWrap.style.display = 'none';
+    areaSelectWrap.style.display = 'none';
     return;
   }
-  statusEl.textContent = t('جاري تحديد موقعك...','Detecting your location...');
-  statusEl.className = 'locate-status';
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      const { latitude: lat, longitude: lon } = pos.coords;
-      userCoords = { lat, lon };
-      const mapsLink = `https://maps.google.com/?q=${lat},${lon}`;
-      inputEl.value = mapsLink;
-      statusEl.textContent = t('✓ تم تحديد موقعك بدقة','✓ Location pinpointed');
-      statusEl.className = 'locate-status ok';
-    },
-    err => {
-      userCoords = null;
-      const msgs = {
-        1: t('رُفض الوصول للموقع — اسمح بالوصول من إعدادات المتصفح','Location permission denied'),
-        2: t('تعذّر تحديد الموقع','Could not determine location'),
-        3: t('انتهت مهلة الطلب','Request timed out')
-      };
-      statusEl.textContent = msgs[err.code] || t('خطأ في تحديد الموقع','Location error');
-      statusEl.className = 'locate-status err';
-    },
-    { timeout: 10000, enableHighAccuracy: true }
-  );
+
+  if (selectedCity === 'أخرى') {
+    cityOtherWrap.style.display = 'block';
+    areaSelectWrap.style.display = 'none';
+    return;
+  }
+
+  cityOtherWrap.style.display = 'none';
+  const areas = CITY_AREAS[selectedCity] || [];
+  areaSelect.innerHTML = `<option value="">${t('اختر الحي','Choose area')}</option>` +
+    areas.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join('');
+  areaSelectWrap.style.display = 'block';
+}
+
+function onAreaChange() {
+  const areaSelect = document.getElementById('areaSelect');
+  const areaOtherWrap = document.getElementById('areaOtherWrap');
+  selectedArea = areaSelect.value;
+  if (selectedArea === 'أخرى') {
+    areaOtherWrap.style.display = 'block';
+  } else {
+    areaOtherWrap.style.display = 'none';
+    document.getElementById('areaOtherInput').value = '';
+  }
+}
+
+function getLocationText() {
+  let city = selectedCity;
+  if (city === 'أخرى') {
+    city = document.getElementById('cityOtherInput').value.trim();
+  }
+  let area = selectedArea;
+  if (area === 'أخرى') {
+    area = document.getElementById('areaOtherInput').value.trim();
+  }
+  if (!city) return '';
+  return area ? `${city} — ${area}` : city;
 }
 
 function checkout() {
@@ -915,10 +1045,32 @@ function checkout() {
     showToast(t('السلة فارغة!','Cart is empty!'));
     return;
   }
-  const location = userCoords ? `https://maps.google.com/?q=${userCoords.lat},${userCoords.lon}` : document.getElementById('locationInput').value.trim();
-  if (deliveryMode === 'delivery' && !location) {
-    showToast(t('حدد موقعك أولاً 📍','Please set your location 📍'));
-    return;
+
+  const statusEl = document.getElementById('locateStatus');
+  let locationText = '';
+
+  if (deliveryMode === 'delivery') {
+    locationText = getLocationText();
+    if (!selectedCity) {
+      statusEl.textContent = t('من فضلك اختر المدينة','Please select a city');
+      statusEl.className = 'locate-status err';
+      return;
+    }
+    if (selectedCity === 'أخرى' && !document.getElementById('cityOtherInput').value.trim()) {
+      statusEl.textContent = t('اكتب اسم مدينتك','Please type your city');
+      statusEl.className = 'locate-status err';
+      return;
+    }
+    if (selectedCity !== 'أخرى' && !selectedArea) {
+      statusEl.textContent = t('من فضلك اختر الحي / المنطقة','Please select an area');
+      statusEl.className = 'locate-status err';
+      return;
+    }
+    if (selectedArea === 'أخرى' && !document.getElementById('areaOtherInput').value.trim()) {
+      statusEl.textContent = t('اكتب اسم حيّك أو منطقتك','Please type your area');
+      statusEl.className = 'locate-status err';
+      return;
+    }
   }
 
   const items = Object.values(cart);
@@ -937,8 +1089,7 @@ function checkout() {
   msg += '\n━━━━━━━━━━━━━━━━━━━━\n';
   if (deliveryMode === 'delivery') {
     msg += `*🚚 طريقة الاستلام:* توصيل\n`;
-    const mapsDisplay = userCoords ? `https://maps.google.com/?q=${userCoords.lat},${userCoords.lon}` : location;
-    msg += `*📍 الموقع:* ${mapsDisplay}\n`;
+    msg += `*📍 الموقع:* ${locationText}\n`;
     msg += `*⚠️ ملاحظة:* السعر لا يشمل رسوم التوصيل\n`;
   } else {
     msg += `*🏪 طريقة الاستلام:* استلام من المتجر\n`;
@@ -974,6 +1125,14 @@ const TEXTS = {
   'footer-copy':  ['© 2025 — جميع الحقوق محفوظة','© 2025 — All rights reserved'],
   'dn-title':     ['تنبيه:','Notice:'],
   'dn-body':      ['سعر المنتج لا يشمل رسوم التوصيل — سيتم التواصل معك لتحديد التفاصيل.','Product price does not include delivery fees — we will contact you to arrange details.'],
+  'ab-title':     ['💳 أرقام الحسابات للتحويل','💳 Transfer Account Numbers'],
+  'lbl-city':     ['المدينة','City'],
+  'lbl-city-other':['اسم المدينة','City Name'],
+  'lbl-area':     ['الحي / المنطقة','Area / District'],
+  'lbl-area-other':['اسم الحي / المنطقة','Area / District Name'],
+  'map-title':    ['موقع المحل','Store Location'],
+  'map-sub':      ['زورونا في معرضنا — اضغط الزر بالأسفل لفتح الموقع على خرائط جوجل','Visit our showroom — tap below to open the location on Google Maps'],
+  'map-link-btn': ['📍 افتح الموقع على الخريطة','📍 Open Location on Map'],
 };
 
 document.getElementById('langToggle').addEventListener('click', ()=>{
@@ -991,13 +1150,19 @@ document.getElementById('langToggle').addEventListener('click', ()=>{
   document.querySelectorAll('.nav-links a').forEach(a=>{ a.textContent = lang==='ar' ? a.dataset.ar : a.dataset.en; });
   document.getElementById('opt-pickup').textContent = t('استلام من المتجر','Store Pickup');
   document.getElementById('opt-delivery').textContent = t('توصيل','Delivery');
-  document.getElementById('locationInput').placeholder = t('عنوانك / حيّك','Your address');
   document.getElementById('checkoutBtn').textContent = t('إتمام الطلب','Checkout');
   renderCats(allCats);
   const shown = activeCat===null ? allProducts : allProducts.filter(p=>(p.category||'')===activeCat);
   renderProds(shown);
   renderCart();
   document.getElementById('filter-val').textContent = activeCat || t('الكل','All');
+  // refresh city select placeholder + area select placeholder text on language switch
+  if (document.getElementById('citySelect').options[0]) {
+    document.getElementById('citySelect').options[0].textContent = t('اختر المدينة','Choose city');
+  }
+  if (document.getElementById('areaSelect').options[0]) {
+    document.getElementById('areaSelect').options[0].textContent = t('اختر الحي','Choose area');
+  }
 });
 
 function updateTexts() {
